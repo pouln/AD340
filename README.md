@@ -8,4 +8,4 @@ Poul Nichols
 Poul Nichols 5/1/2020
 
 Poul Nichols 5/6/2020
-completed Assignment 2
+completed Assignment 3
