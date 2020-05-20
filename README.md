@@ -12,3 +12,6 @@ completed Assignment 3
 
 Poul Nichols 5/13/2020
 completed Assignment 4
+
+Poul Nichols 5/20/2020
+completed Assignment 5
