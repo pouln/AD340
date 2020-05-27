@@ -15,3 +15,5 @@ completed Assignment 4
 
 Poul Nichols 5/20/2020
 completed Assignment 5
+
+Rebuild top level build.script
