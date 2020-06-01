@@ -17,3 +17,5 @@ Poul Nichols 5/20/2020
 completed Assignment 5
 
 Rebuild top level build.script
+
+Assignment 6, Week 6 Lecture 36:30

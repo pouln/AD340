@@ -29,10 +29,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
         tempDisplaySettingManager = TempDisplaySettingManager(this)
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragmentContainer, LocationEntryFragment())
-            .commit()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -54,44 +51,18 @@ class MainActivity : AppCompatActivity(), AppNavigator {
     }
 
     override fun navigateToCurrentForecast(zipcode: String) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, CurrentForecastFragment.newInstance(zipcode))
-            .commit()
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.fragmentContainer, CurrentForecastFragment.newInstance(zipcode))
+//            .commit()
     }
 
     override fun navigateToLocationEntry() {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, LocationEntryFragment())
-            .commit()
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.fragmentContainer, LocationEntryFragment())
+//            .commit()
     }
 
-    /* Not using these lifecycle methods for this week (3rd week)
-    override fun onStart() {
-        super.onStart()
-    }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-    // endregion setup methods
-
-    // region teardown methods
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-    */
-
-    // endregion teardown methods
 }
