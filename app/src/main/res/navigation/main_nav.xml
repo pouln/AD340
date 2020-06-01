@@ -9,7 +9,16 @@
         android:id="@+id/locationEntryFragment"
         android:name="com.example.ad340.location.LocationEntryFragment"
         android:label="fragment_location_entry"
-        tools:layout="@layout/fragment_location_entry" />
+        tools:layout="@layout/fragment_location_entry" >
+        <action
+            android:id="@+id/action_locationEntryFragment_to_currentForecastFragment2"
+            app:destination="@id/currentForecastFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentForecastFragment"
+        android:name="com.example.ad340.forecast.CurrentForecastFragment"
+        android:label="fragment_current_forecast"
+        tools:layout="@layout/fragment_current_forecast" />
 
 
 </navigation>

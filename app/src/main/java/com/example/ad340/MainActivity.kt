@@ -11,11 +11,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ad340.details.ForecastDetailsActivity
 import com.example.ad340.forecast.CurrentForecastFragment
 import com.example.ad340.location.LocationEntryFragment
+import com.example.ad340.location.LocationEntryFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity(), AppNavigator {
@@ -51,10 +53,8 @@ class MainActivity : AppCompatActivity(), AppNavigator {
     }
 
     override fun navigateToCurrentForecast(zipcode: String) {
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.fragmentContainer, CurrentForecastFragment.newInstance(zipcode))
-//            .commit()
+        val action = LocationEntryFragmentDirections.actionLocationEntryFragmentToCurrentForecastFragment2()
+        findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
     override fun navigateToLocationEntry() {
