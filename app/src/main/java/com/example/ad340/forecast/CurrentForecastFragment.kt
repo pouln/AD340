@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ad340.*
 
-import com.example.ad340.details.ForecastDetailsActivity
+import com.example.ad340.details.ForecastDetailsFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.fragment_current_forecast.view.*
 
 /**
  * A simple [Fragment] subclass.
@@ -72,11 +71,7 @@ class CurrentForecastFragment : Fragment() {
 
     }
     private fun showForecastDetails(forecast: DailyForecast){
-        val forecastDetailsIntent = Intent(requireContext(), ForecastDetailsActivity::class.java)
-        forecastDetailsIntent.putExtra("key_temp", forecast.temp)
-        forecastDetailsIntent.putExtra("key_description", forecast.description)
-
-        startActivity(forecastDetailsIntent)
+        appNavigator.navigateToForecastDetails(forecast)
     }
 
     companion object {

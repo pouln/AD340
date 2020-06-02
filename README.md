@@ -21,3 +21,4 @@ Rebuild top level build.script
 Assignment 6, Week 6 Lecture 36:30
 Assignment 6, Week 6 Lecture 45:20
 Assignment 6, Week 6 Lecture 47:39
+Assignment 6, Week 6 Lecture 1:00:03

@@ -22,7 +22,15 @@
         <action
             android:id="@+id/action_currentForecastFragment_to_locationEntryFragment"
             app:destination="@id/locationEntryFragment" />
+        <action
+            android:id="@+id/action_currentForecastFragment_to_forecastDetailsFragment"
+            app:destination="@id/forecastDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/forecastDetailsFragment"
+        android:name="com.example.ad340.details.ForecastDetailsFragment"
+        android:label="fragment_forecast_details"
+        tools:layout="@layout/fragment_forecast_details" />
 
 
 </navigation>
