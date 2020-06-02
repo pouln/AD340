@@ -18,7 +18,11 @@
         android:id="@+id/currentForecastFragment"
         android:name="com.example.ad340.forecast.CurrentForecastFragment"
         android:label="fragment_current_forecast"
-        tools:layout="@layout/fragment_current_forecast" />
+        tools:layout="@layout/fragment_current_forecast" >
+        <action
+            android:id="@+id/action_currentForecastFragment_to_locationEntryFragment"
+            app:destination="@id/locationEntryFragment" />
+    </fragment>
 
 
 </navigation>

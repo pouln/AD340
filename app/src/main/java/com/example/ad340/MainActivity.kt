@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ad340.details.ForecastDetailsActivity
 import com.example.ad340.forecast.CurrentForecastFragment
+import com.example.ad340.forecast.CurrentForecastFragmentDirections
 import com.example.ad340.location.LocationEntryFragment
 import com.example.ad340.location.LocationEntryFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -58,10 +59,8 @@ class MainActivity : AppCompatActivity(), AppNavigator {
     }
 
     override fun navigateToLocationEntry() {
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.fragmentContainer, LocationEntryFragment())
-//            .commit()
+        val action = CurrentForecastFragmentDirections.actionCurrentForecastFragmentToLocationEntryFragment()
+        findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
 
