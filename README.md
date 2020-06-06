@@ -26,3 +26,4 @@ Assignment 6, Week 6 Lecture 1:03:57
 Assignment 6, Week 6 Lecture 1:06:59
 Assignment 6, Week 6 Lecture 1:12:15
 Assignment 6, Week 6 Lecture 1:13:15
+Assignment 6, Week 6 Lecture 1:27:30

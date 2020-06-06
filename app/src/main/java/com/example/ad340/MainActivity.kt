@@ -10,8 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.ad340.forecast.CurrentForecastFragmentDirections
-import com.example.ad340.location.LocationEntryFragmentDirections
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity(), AppNavigator {
@@ -28,6 +27,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
+        findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
 
     }
 
@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity(), AppNavigator {
     }
 
     override fun navigateToCurrentForecast(zipcode: String) {
-        val action = LocationEntryFragmentDirections.actionLocationEntryFragmentToCurrentForecastFragment2()
-        findNavController(R.id.nav_host_fragment).navigate(action)
+//        val action = LocationEntryFragmentDirections.actionLocationEntryFragmentToCurrentForecastFragment2()
+//        findNavController(R.id.nav_host_fragment).navigate(action)
     }
 
     override fun navigateToLocationEntry() {
