@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity(), AppNavigator {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
 
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
