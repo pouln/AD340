@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.ad340.*
 
-class ForecastDetailsFragment : Fragment() {
+class ForecastDetailsActivityFragment : Fragment() {
 
-    private val args: ForecastDetailsFragmentArgs by navArgs()
+    private val args: ForecastDetailsActivityFragmentArgs by navArgs()
 
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
