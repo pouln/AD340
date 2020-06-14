@@ -13,6 +13,7 @@ import com.example.ad340.*
 import com.example.ad340.api.DailyForecast
 import com.example.ad340.api.WeeklyForecast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_location_entry.*
 import kotlinx.android.synthetic.main.fragment_weekly_forecast.*
 
 /**
