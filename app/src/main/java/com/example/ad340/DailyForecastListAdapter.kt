@@ -1,5 +1,6 @@
 package com.example.ad340
 
+import android.annotation.SuppressLint
 import android.provider.Settings.System.DATE_FORMAT
 import android.view.LayoutInflater
 import android.view.View
