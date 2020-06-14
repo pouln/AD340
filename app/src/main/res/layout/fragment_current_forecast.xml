@@ -18,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Seattle" />
+        tools:text="Seattle"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:id="@+id/tempText"

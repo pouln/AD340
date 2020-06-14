@@ -30,7 +30,7 @@ class DailyForecastViewHolder(
     fun bind(dailyForecast: DailyForecast){
         tempText.text = formatTempForDisplay(dailyForecast.temp.max, tempDisplaySettingManager.getTempDisplaySetting())
         descriptionText.text = dailyForecast.weather[0].description
-        //dateText.text = DATE_FORMAT.format(Date(dailyForecast.date * 1000))
+        dateText.text = DATE_FORMAT.format(Date(dailyForecast.date * 1000))
 
         val iconId = dailyForecast.weather[0].icon
         forecastIcon.load("http://openweathermap.org/img/wn/${iconId}@2x.png")
