@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ad340.api.DailyForecast
 import coil.api.load
+import com.example.ad340.R.id.dateText
 import java.text.SimpleDateFormat
 import java.util.*
 private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
@@ -26,7 +27,7 @@ class DailyForecastViewHolder(
     private val dateText = view.findViewById<TextView>(R.id.dateText)
     private val forecastIcon = view.findViewById<ImageView>(R.id.forecastIcon)
 
-    fun bind(dailyForecast: DailyForecast) {
+    fun bind(dailyForecast: DailyForecast){
         tempText.text = formatTempForDisplay(dailyForecast.temp.max, tempDisplaySettingManager.getTempDisplaySetting())
         descriptionText.text = dailyForecast.weather[0].description
         dateText.text = DATE_FORMAT.format(Date(dailyForecast.date * 1000))
@@ -37,11 +38,24 @@ class DailyForecastViewHolder(
 
 }
 
-class DailyForecastAdapter(
+class DailyForecastListAdapter(
     private val tempDisplaySettingManager: TempDisplaySettingManager,
     private val clickHandler: (DailyForecast) -> Unit
 ) : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
-    companion object{
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast, parent, false)
+        return DailyForecastViewHolder(itemView, tempDisplaySettingManager)
+    }
+
+    override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
+        holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            clickHandler(getItem(position))
+        }
+    }
+
+    companion object {
         val DIFF_CONFIG = object: DiffUtil.ItemCallback<DailyForecast>() {
             override fun areItemsTheSame(oldItem: DailyForecast, newItem: DailyForecast): Boolean {
                 return oldItem === newItem
@@ -54,19 +68,7 @@ class DailyForecastAdapter(
                 return oldItem == newItem
             }
 
-        }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast, parent, false)
-        return DailyForecastViewHolder(itemView, tempDisplaySettingManager)
-
-    }
-
-    override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
-        holder.bind(getItem(position))
-        holder.itemView.setOnClickListener {
-            clickHandler(getItem(position))
         }
     }
 }

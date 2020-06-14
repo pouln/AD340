@@ -15,6 +15,8 @@ import java.util.*
 import kotlin.random.Random
 
 class ForecastRepository {
+    private val weatherService = createOpenWeatherMapService()
+
    private val _currentWeather = MutableLiveData<CurrentWeather>()
    val currentWeather: LiveData<CurrentWeather> = _currentWeather
 

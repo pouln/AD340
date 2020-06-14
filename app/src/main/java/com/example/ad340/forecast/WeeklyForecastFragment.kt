@@ -39,7 +39,7 @@ class WeeklyForecastFragment : Fragment() {
         val dailyForecastList: RecyclerView = view.findViewById(R.id.dailyForecastList)
         dailyForecastList.layoutManager = LinearLayoutManager(requireContext())
 
-        val dailyForecastAdapter = DailyForecastAdapter(tempDisplaySettingManager) { forecast ->
+        val dailyForecastAdapter = DailyForecastListAdapter(tempDisplaySettingManager) { forecast ->
             showForecastDetails(forecast)
         }
         dailyForecastList.adapter = dailyForecastAdapter
