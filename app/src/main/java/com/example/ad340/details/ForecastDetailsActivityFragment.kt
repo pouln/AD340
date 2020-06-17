@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import coil.api.load
@@ -18,7 +19,11 @@ import java.util.*
 class ForecastDetailsActivityFragment : Fragment() {
 
     private val args: ForecastDetailsActivityFragmentArgs by navArgs()
-    private val viewModel = ForecastDetailsViewModel()
+
+    private lateinit var viewModelFactory: ForecastDetailsViewModelFactory
+    private val viewModel : ForecastDetailsViewModel by viewModels(
+        factoryProducer = {viewModelFactory}
+    )
 
     private var _binding: FragmentForecastDetailsBinding? = null
     //This property only valid between onCreateView and onDestroyView
@@ -32,6 +37,7 @@ class ForecastDetailsActivityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentForecastDetailsBinding.inflate(inflater, container, false)
+        viewModelFactory = ForecastDetailsViewModelFactory(args)
 
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
 
@@ -48,6 +54,7 @@ class ForecastDetailsActivityFragment : Fragment() {
             binding.forecastIcon.load(viewState.iconUrl)
         }
         viewModel.viewState.observe(viewLifecycleOwner, viewStateObserver)
+       
     }
 
     override fun onDestroyView() {

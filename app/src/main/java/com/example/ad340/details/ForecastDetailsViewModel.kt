@@ -10,16 +10,30 @@ import java.util.*
 
 private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
 
-class ForecastDetailsViewModel : ViewModel() {
+class ForecastDetailsViewModelFactory(private val args: ForecastDetailsActivityFragmentArgs) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(ForecastDetailsViewModel::class.java)){
+            return ForecastDetailsViewModel(args) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+
+}
+
+
+
+class ForecastDetailsViewModel(args: ForecastDetailsActivityFragmentArgs) : ViewModel() {
     private val _viewState: MutableLiveData<ForecastDetailsViewState> = MutableLiveData()
     val viewState: LiveData<ForecastDetailsViewState> = _viewState
 
-    fun processArgs(args: ForecastDetailsActivityFragmentArgs){
+    init {
         _viewState.value = ForecastDetailsViewState(
             temp = args.temp,
             description = args.description,
             date = DATE_FORMAT.format(Date(args.date * 1000)),
             iconUrl = "http://openweathermap.org/img/wn/${args.icon}@2x.png"
+
         )
     }
+
 }
