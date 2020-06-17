@@ -6,17 +6,19 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import coil.api.load
 import com.example.ad340.*
 import com.example.ad340.databinding.FragmentForecastDetailsBinding
 import java.text.SimpleDateFormat
 import java.util.*
-private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
+
 
 class ForecastDetailsActivityFragment : Fragment() {
 
     private val args: ForecastDetailsActivityFragmentArgs by navArgs()
+    private val viewModel = ForecastDetailsViewModel()
 
     private var _binding: FragmentForecastDetailsBinding? = null
     //This property only valid between onCreateView and onDestroyView
@@ -33,13 +35,19 @@ class ForecastDetailsActivityFragment : Fragment() {
 
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
 
-
-        binding.tempText.text = formatTempForDisplay(args.temp, tempDisplaySettingManager.getTempDisplaySetting())
-        binding.descriptionText.text = args.description
-        binding.dateText.text = DATE_FORMAT.format(Date(args.date * 1000))
-        binding.forecastIcon.load("http://openweathermap.org/img/wn/${args.icon}@2x.png")
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val viewStateObserver = Observer<ForecastDetailsViewState> {viewState ->
+            //udate teh UI
+            binding.tempText.text = formatTempForDisplay(viewState.temp, tempDisplaySettingManager.getTempDisplaySetting())
+            binding.descriptionText.text = viewState.description
+            binding.dateText.text = viewState.date
+            binding.forecastIcon.load(viewState.iconUrl)
+        }
+        viewModel.viewState.observe(viewLifecycleOwner, viewStateObserver)
     }
 
     override fun onDestroyView() {
