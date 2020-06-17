@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.api.load
 import com.example.ad340.*
+import com.example.ad340.databinding.FragmentForecastDetailsBinding
 import java.text.SimpleDateFormat
 import java.util.*
 private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
@@ -17,6 +18,10 @@ class ForecastDetailsActivityFragment : Fragment() {
 
     private val args: ForecastDetailsActivityFragmentArgs by navArgs()
 
+    private var _binding: FragmentForecastDetailsBinding? = null
+    //This property only valid between onCreateView and onDestroyView
+    private val binding get()= _binding!!
+
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
     override fun onCreateView(
@@ -24,23 +29,22 @@ class ForecastDetailsActivityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val layout = inflater.inflate(R.layout.fragment_forecast_details, container, false)
+        _binding = FragmentForecastDetailsBinding.inflate(inflater, container, false)
 
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
 
-        val tempText = layout.findViewById<TextView>(R.id.tempText)
-        val descriptionText = layout.findViewById<TextView>(R.id.descriptionText)
-        val dateText = layout.findViewById<TextView>(R.id.dateText)
-        val forecastIcon = layout.findViewById<ImageView>(R.id.forecastIcon)
 
+        binding.tempText.text = formatTempForDisplay(args.temp, tempDisplaySettingManager.getTempDisplaySetting())
+        binding.descriptionText.text = args.description
+        binding.dateText.text = DATE_FORMAT.format(Date(args.date * 1000))
+        binding.forecastIcon.load("http://openweathermap.org/img/wn/${args.icon}@2x.png")
 
-        tempText.text = formatTempForDisplay(args.temp, tempDisplaySettingManager.getTempDisplaySetting())
-        descriptionText.text = args.description
+        return binding.root
+    }
 
-        dateText.text = DATE_FORMAT.format(Date(args.date * 1000))
-        forecastIcon.load("http://openweathermap.org/img/wn/${args.icon}@2x.png")
-
-        return layout
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
