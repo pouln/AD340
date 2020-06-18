@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -38,6 +39,7 @@ class CurrentForecastFragment : Fragment() {
         val locationName: TextView = view.findViewById(R.id.locationName)
         val tempText: TextView = view.findViewById(R.id.tempText)
         val emptyText = view.findViewById<TextView>(R.id.emptyText)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
         //val zipcode = arguments?.getString(KEY_ZIPCODE) ?: ""
 
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
@@ -46,6 +48,7 @@ class CurrentForecastFragment : Fragment() {
         // Create the observer which updates the UI in response to forecast updates
        val currentWeatherObserver = Observer<CurrentWeather> {weather ->
            emptyText.visibility = View.GONE
+           progressBar.visibility = View.GONE
            locationName.visibility = View.VISIBLE
            tempText.visibility = View.VISIBLE
 
@@ -63,7 +66,10 @@ class CurrentForecastFragment : Fragment() {
         locationRepository = LocationRepository(requireContext())
         val savedLocationObserver = Observer<Location> { savedLocation ->
             when (savedLocation) {
-                is Location.Zipcode -> forecastRepository.loadCurrentForecast(savedLocation.zipcode)
+                is Location.Zipcode -> {
+                    forecastRepository.loadCurrentForecast(savedLocation.zipcode)
+                    progressBar.visibility = View.VISIBLE
+                }
             }
         }
         locationRepository.savedLocation.observe(viewLifecycleOwner, savedLocationObserver)
