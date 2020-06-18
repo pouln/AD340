@@ -37,13 +37,18 @@ class CurrentForecastFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_current_forecast, container, false)
         val locationName: TextView = view.findViewById(R.id.locationName)
         val tempText: TextView = view.findViewById(R.id.tempText)
-        val zipcode = arguments?.getString(KEY_ZIPCODE) ?: ""
+        val emptyText = view.findViewById<TextView>(R.id.emptyText)
+        //val zipcode = arguments?.getString(KEY_ZIPCODE) ?: ""
 
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
 
 
         // Create the observer which updates the UI in response to forecast updates
        val currentWeatherObserver = Observer<CurrentWeather> {weather ->
+           emptyText.visibility = View.GONE
+           locationName.visibility = View.VISIBLE
+           tempText.visibility = View.VISIBLE
+
            locationName.text = weather.name
            tempText.text = formatTempForDisplay(weather.forecast.temp, tempDisplaySettingManager.getTempDisplaySetting())
        }
